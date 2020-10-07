@@ -1,0 +1,7 @@
+syntax = "proto3";
+package KafkaConsumer;
+option csharp_namespace = "KafkaConsumer";
+
+message MyProtoMessage {
+  string message = 1;
+}
