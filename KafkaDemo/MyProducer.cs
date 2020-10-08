@@ -8,7 +8,7 @@ namespace KafkaConsumer
 {
     public static class MyProducer
     {
-        public static async Task ProduceLoop(ProducerConfig producerConfig, string s)
+        public static async Task ProduceLoop(ProducerConfig producerConfig, string topic)
         {
             try
             {
@@ -17,6 +17,7 @@ namespace KafkaConsumer
 
                 while (true)
                 {
+                    Console.WriteLine("producing");
                     var msg = new MyMessage
                     {
                         Message = "Arne Anka!!" + Guid.NewGuid()
@@ -27,10 +28,12 @@ namespace KafkaConsumer
 
                     try
                     {
-                        producer.Produce(s, new Message<Null, byte[]>
+                        producer.Produce(topic, new Message<Null, byte[]>
                         {
                             Value = bytes
-                        });
+                        }/*, delivery report callback*/);
+                        
+                        //producer.ProduceAsync()
                     }
                     catch (ProduceException<Null,byte[]> x)
                     {

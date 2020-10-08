@@ -1,5 +1,7 @@
 using System;
+using System.Diagnostics;
 using System.Text;
+using System.Threading;
 using Confluent.Kafka;
 using Newtonsoft.Json;
 
@@ -13,7 +15,7 @@ namespace KafkaConsumer
                 .Build();
 
             consumer.Subscribe(s);
-
+            
             while (true)
             {
                 try
@@ -29,6 +31,7 @@ namespace KafkaConsumer
                     var json = Encoding.UTF8.GetString(bytes);
                     var msg = JsonConvert.DeserializeObject<MyMessage>(json);
                     
+                    //DumpTimestampEvery(5000);
                     Console.WriteLine(msg.Message);
 
                     // Console.WriteLine(
@@ -49,6 +52,17 @@ namespace KafkaConsumer
                     consumer.Close();
                 }
             }
+
+        }
+        private static int counter;
+        private static Stopwatch sw = Stopwatch.StartNew();
+
+        static void DumpTimestampEvery(int messageCount) {
+            if (Interlocked.Increment(ref counter) % messageCount != 0) return;
+
+            var average = messageCount / sw.Elapsed.TotalMilliseconds * 1000;
+            sw.Restart();
+            Console.WriteLine((int)average);
         }
     }
 }

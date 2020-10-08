@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Confluent.Kafka;
-using Confluent.Kafka.SyncOverAsync;
-using Confluent.SchemaRegistry.Serdes;
 using KafkaConsumer;
-using Newtonsoft.Json;
 
-var key = "ZOK6LYNQ2STVRL6H";
-var secret = "vD6gzHD0hxWT4OsCUrbeC4HhR9sD65Q8Q++7+z/MvZXtFW9XwF+GByknGn1QoyNX";
+var key = "";
+var secret = "";
 
 var topic = "mytopic";
 var bootstrapServers = "pkc-4r297.europe-west1.gcp.confluent.cloud:9092";
@@ -19,7 +15,7 @@ var consumerConfig = new ConsumerConfig
     SecurityProtocol = SecurityProtocol.SaslSsl,
     SaslUsername = key,
     SaslPassword = secret,
-    
+
     BootstrapServers = bootstrapServers,
     GroupId = "csharp-consumer",
     EnableAutoCommit = false,
@@ -39,14 +35,9 @@ var producerConfig = new ProducerConfig
     
 };
 
-const int commitPeriod = 5;
-// Note: Specifying json serializer configuration is optional.
+const int commitPeriod = 1000;
 
 _ = Task.Run(() => MyProducer.ProduceLoop(producerConfig, topic));
 _ = Task.Run(() => MyConsumer.ConsumeLoop(consumerConfig, topic, commitPeriod));
 
-
-
 Console.ReadLine();
-
-
