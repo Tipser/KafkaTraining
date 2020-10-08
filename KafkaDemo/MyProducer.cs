@@ -30,6 +30,11 @@ namespace KafkaConsumer
                     {
                         producer.Produce(topic, new Message<Null, byte[]>
                         {
+                            // Headers = new Headers
+                            // {
+                            //     new Header("some Header",new byte[]{1,2,3})
+                            // },
+                        
                             Value = bytes
                         }/*, delivery report callback*/);
                         
