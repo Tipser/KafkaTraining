@@ -34,13 +34,13 @@ namespace KafkaConsumer
                             // {
                             //     new Header("some Header",new byte[]{1,2,3})
                             // },
-                        
+
                             Value = bytes
                         }/*, delivery report callback*/);
-                        
+
                         //producer.ProduceAsync()
                     }
-                    catch (ProduceException<Null,byte[]> x)
+                    catch (ProduceException<Null,byte[]>)
                     {
                         Console.WriteLine("Going to fast!");
                     }
