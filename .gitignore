@@ -348,3 +348,12 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/.idea/.idea.KafkaConsumer/.idea/.name
+/.idea/.idea.KafkaConsumer/.idea/contentModel.xml
+/.idea/.idea.KafkaConsumer/.idea/encodings.xml
+/.idea/.idea.KafkaConsumer/.idea/indexLayout.xml
+/.idea/.idea.KafkaConsumer/.idea/modules.xml
+/.idea/.idea.KafkaConsumer/.idea/projectSettingsUpdater.xml
+/.idea/.idea.KafkaConsumer/.idea/riderModule.iml
+/.idea/.idea.KafkaConsumer/.idea/vcs.xml
+/.idea/.idea.KafkaConsumer/.idea/workspace.xml
